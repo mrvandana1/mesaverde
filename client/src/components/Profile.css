@@ -1,0 +1,151 @@
+/* Profile Container */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  background-color: #f4f6f8;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 800px;
+  margin-top: 30px;
+}
+
+.profile-container h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Menu Button */
+.menu-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.menu-button:hover {
+  color: #ff4d4d;
+}
+
+/* Side Panel */
+.side-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  padding-top: 50px;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0); /* Show the panel */
+  z-index: 1000;
+}
+
+.side-panel .menu-option {
+  padding: 20px;
+  border-bottom: 1px solid #444;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.side-panel .menu-option:hover {
+  background-color: #444;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-button:hover {
+  color: #ff4d4d;
+}
+
+/* Profile Details */
+.profile-details {
+  width: 100%;
+  margin-top: 80px;
+}
+
+.profile-item {
+  background-color: #fff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.profile-item strong {
+  color: #555;
+}
+
+/* Logout Button */
+.logout-button {
+  padding: 10px 20px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 20px;
+}
+
+.logout-button:hover {
+  background-color: #e03e3e;
+  transform: translateY(-3px);
+}
+
+/* Close Side Panel if the menu is not open */
+.side-panel.closed {
+  transform: translateX(-250px); /* Hide the panel */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+    width: 95%;
+    margin-top: 20px;
+  }
+
+  .profile-item {
+    padding: 12px;
+  }
+
+  .logout-button {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .menu-button {
+    left: 10px;
+  }
+
+  .side-panel {
+    width: 200px;
+  }
+}
