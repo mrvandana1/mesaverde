@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../api"; // Assuming axios is set up to use the correct base URL
-import './Profile.css';  
+import "./Profile.css";
+import Transaction from "./Transaction"; // Import Transaction component
 
 function Profile() {
   const [user, setUser] = useState(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track menu open/close
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showTransaction, setShowTransaction] = useState(false); // Toggle transaction component
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,16 +19,19 @@ function Profile() {
       }
 
       try {
-        // Make an API call to the backend to fetch the user profile data
+        // Fetch profile data
         const response = await axios.get("/profile", {
           headers: {
-            Authorization: `Bearer ${token}`, // Send token in header
+            Authorization: `Bearer ${token}`,
           },
         });
-        setUser(response.data); // Store user data in state
+        setUser(response.data);
+        console.log(response.data._id);
+        console.log("profile hit");
+        localStorage.setItem("userId", response.data.id); 
       } catch (error) {
         console.error("Error fetching profile data", error);
-        navigate("/"); // Redirect if there's an error (e.g., token expired)
+        navigate("/");
       }
     };
 
@@ -35,8 +40,7 @@ function Profile() {
 
   if (!user) return <p>Loading...</p>;
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen); // Toggle menu state
-
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const handleLogout = () => {
     localStorage.clear();
     navigate("/");
@@ -53,19 +57,17 @@ function Profile() {
       {/* Side Panel */}
       {isMenuOpen && (
         <div className="side-panel">
-          {/* Close Button */}
           <button className="close-button" onClick={toggleMenu}>
             &times;
           </button>
-          
           <div className="menu-option" onClick={handleLogout}>
             Logout
           </div>
-          <div className="menu-option" onClick={() => navigate("/transfer")}>
-            Transfer
-          </div>
           <div className="menu-option" onClick={() => navigate("/update-profile")}>
             Update Profile
+          </div>
+          <div className="menu-option" onClick={() => setShowTransaction(!showTransaction)}>
+            Transactions
           </div>
         </div>
       )}
@@ -87,6 +89,9 @@ function Profile() {
           <strong>Role:</strong> {user.role}
         </div>
       </div>
+
+      {/* Render Transactions component if toggled */}
+      {showTransaction && <Transaction />}
     </div>
   );
 }

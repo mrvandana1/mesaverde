@@ -149,3 +149,83 @@
     width: 200px;
   }
 }
+.transaction-section {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.transaction-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.transaction-tab {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  transition: background-color 0.3s;
+}
+
+.transaction-tab.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.transaction-tab:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+.make-transaction,
+.view-transactions {
+  margin-top: 20px;
+}
+
+.make-transaction form div {
+  margin-bottom: 10px;
+}
+
+.make-transaction form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.make-transaction form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.make-transaction form button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.make-transaction form button:hover {
+  background-color: #0056b3;
+}
+
+.view-transactions ul {
+  list-style: none;
+  padding: 0;
+}
+
+.view-transactions li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 4px;
+}

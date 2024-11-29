@@ -4,6 +4,40 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const router = express.Router();
 
+// Middleware to verify JWT token
+
+const authenticate = async (req, res, next) => {
+  try {
+    const token = req.header("Authorization");
+
+    if (!token) {
+      return res.status(401).json({ message: "Access denied. No token provided." });
+    }
+
+    // Extract the token value
+    const tokenValue = token.startsWith("Bearer ") ? token.slice(7) : token;
+
+    // Verify the token
+    jwt.verify(tokenValue, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+        console.error("JWT verification error:", err.message);
+        return res.status(403).json({ message: "Invalid token." });
+      }
+
+      // Attach the decoded user data (e.g., user ID) to the request object
+      req.user = decoded; // Assuming `decoded` contains the user ID and other relevant info
+      console.log("Authenticated user:", req.user); // Log for debugging
+      next();
+    });
+  } catch (error) {
+    console.error("Authentication middleware error:", error);
+    res.status(500).json({ message: "Internal server error." });
+  }
+};
+
+module.exports = authenticate;
+
+
 
 // Signup route
 router.post("/signup", async (req, res) => {
@@ -68,14 +102,20 @@ router.post("/login", async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ error: "Invalid password" });
     }
-
+    //console.log(user);
     // Generate a JWT token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-
-    // Send back the token and user data (excluding password)
     res.status(200).json({
       token,
-      user: { name: user.name, email: user.email, phoneNumber: user.phoneNumber, accountNumber: user.accountNumber },
+      user: { 
+        id: user._id, 
+        name: user.name,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        accountNumber: user.accountNumber,
+        balance : user.accountBalance
+      },
+      
     });
   } catch (error) {
     console.error("Error logging in:", error);
