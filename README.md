@@ -1,38 +1,17 @@
-project-name/
-├── backend/
-│   ├── models/                # Database schemas
-│   │   ├── user.js            # User schema
-│   │   ├── transaction.js     # Transaction schema
-│   │
-│   ├── routes/                # API routes
-│   │   ├── auth.js            # Authentication-related endpoints
-│   │   ├── profile.js         # Profile-related endpoints
-│   │   ├── transaction.js     # Transaction-related endpoints
-│   │
-│   ├── tests/                 # Test cases for the backend
-│   │   ├── signup.test.js     # Test signup functionality
-│   │   ├── login.test.js      # Test login functionality
-│   │
-│   ├── .env                   # Environment variables (not used )
-│   ├── server.js              # Main backend server file
+Struct file in the main directory of thr project has the structure of the directories (view in raw)
 
-│
-├── frontend/
-│   ├── public/                # Static files
-│   │   ├── index.html         # Main HTML file
-│   │   ├── favicon.ico       
-│   │
-│   ├── src/                   # Main frontend code
-│   │   ├── components/        # Reusable React components
-│   │   │   │── Login.js   # Login form
-│   │   │   ├── Signup.js  # Signup form
-│   │   │   ├── Auth.css   # Styles for auth components
-│   │   │   ├── Profile.js # Profile display
-│   │   │   ├── Profile.css# Profile styles
-│   │   │   ├── Transaction.js
-│   │   │   │── Transaction.css
-│   │   │
-│   │   ├── App.js             # Main React component
-│   │   ├── index.js           # Entry point for React
-│   │   ├── App.css            # Global styles
-│
+now in the main directory (mesaverde)
+run these:
+
+npm install
+npm installl-all
+these two are for dependenciees
+npm run  
+this opens local host 
+where we can add a user or login
+(this is a test user id and password you can use this or can create new one :
+email:vandanamohanaraj@gmail.com
+password:password)
+
+for the tests:
+npm test (in the main directory mesaverde)
