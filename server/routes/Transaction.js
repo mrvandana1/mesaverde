@@ -7,12 +7,8 @@ const authenticate = require("./auth"); // Correct path to `auth.js` in `routes`
 // POST /transactions - Make a transaction
 router.post("/", authenticate, async (req, res) => {
   console.log("POST /Transaction hit");
-
-
   const { accountNumber, amount, user } = req.body; // Changed `amountt` to `amount`
-
   const parsedAmount = Number(amount); // Ensure amount is a number
-
   if (!accountNumber || !parsedAmount) {
     return res.status(400).json({ error: "Account number and amount are required." });
   }
