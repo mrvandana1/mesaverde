@@ -15,7 +15,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/Transaction", transactionRoutes);
 
-mongoose.connect("mongodb+srv://vandanamohanaraj:Vandana1087@cluster0.w8m80jg.mongodb.net/se")
+mongoose.connect("YOUR_API")
 .then(() => console.log("MongoDB connected"))
 .catch((error) => console.error("Error connecting to MongoDB:", error));
 
